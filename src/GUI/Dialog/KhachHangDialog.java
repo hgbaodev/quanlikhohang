@@ -153,7 +153,7 @@ public class KhachHangDialog extends JDialog implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getSource() == btnThem && Validation()) {
-                int id=KhachHangDAO.getInstance().getAutoIncrement();
+                int id=KhachHangDAO.getInstance().getAutoIncrement()+1;
                 jpKH.khachhangBUS.add(new DTO.KhachHangDTO(id, tenKH.getText(),sdtKH.getText(), diachiKH.getText()));
                 jpKH.loadDataTable(jpKH.listkh);
                 dispose();

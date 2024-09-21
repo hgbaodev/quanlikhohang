@@ -142,7 +142,7 @@ public class DungLuongRomDialog extends JDialog implements MouseListener {
             } else {
                 int kichthuoc = Integer.parseInt(ms.getText());
                 if (dlrBUS.checkDup(kichthuoc)) {
-                    int id = DungLuongRomDAO.getInstance().getAutoIncrement();
+                    int id = DungLuongRomDAO.getInstance().getAutoIncrement()+1;
                     dlrBUS.add(new DungLuongRomDTO(id, kichthuoc));
                     loadDataTable(list);
                     ms.setText("");

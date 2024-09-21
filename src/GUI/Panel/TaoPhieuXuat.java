@@ -431,7 +431,7 @@ public final class TaoPhieuXuat extends JPanel {
         txtMaphieu.setEditable(false);
         txtNhanVien = new InputForm("Nhân viên xuất");
         txtNhanVien.setEditable(false);
-        maphieu = PhieuXuatDAO.getInstance().getAutoIncrement();
+        maphieu = PhieuXuatDAO.getInstance().getAutoIncrement()+1;
         manv = tk.getManv();
         txtMaphieu.setText("PX" + PhieuXuatDAO.getInstance().getAutoIncrement());
         NhanVienDTO nhanvien = NhanVienDAO.getInstance().selectById(tk.getManv() + "");

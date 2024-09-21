@@ -113,7 +113,7 @@ public final class KhuVucKhoDialog extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnThem && Validation()) {
-            int makhuvuc = KhuVucKhoDAO.getInstance().getAutoIncrement();
+            int makhuvuc = KhuVucKhoDAO.getInstance().getAutoIncrement()+1;
             String tenkhuvuc = this.tenkhuvuc.getText();
             String ghichu = this.ghichu.getText();
             jpkvk.kvkBUS.add(new KhuVucKhoDTO(makhuvuc, tenkhuvuc, ghichu));

@@ -140,7 +140,7 @@ public final class ThuongHieuDialog extends JDialog implements MouseListener {
             } else {
                 String tenthuonghieu = ms.getText();
                 if (thBUS.checkDup(tenthuonghieu)) {
-                    int id = ThuongHieuDAO.getInstance().getAutoIncrement();
+                    int id = ThuongHieuDAO.getInstance().getAutoIncrement()+1;
                     thBUS.add(tenthuonghieu);
                     loadDataTable(list);
                     ms.setText("");

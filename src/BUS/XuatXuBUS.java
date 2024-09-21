@@ -78,7 +78,7 @@ public class XuatXuBUS {
     public boolean checkDup(String name) {
         boolean check = true;
         int i = 0;
-        while (i <= this.listXuatXu.size() && check == true) {
+        while (i < this.listXuatXu.size() && check == true) {
             if (this.listXuatXu.get(i).getTenxuatxu().toLowerCase().contains(name.toLowerCase())) {
                 check = false;
             } else {

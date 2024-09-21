@@ -12,11 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.sql.Statement;
+
 import DTO.KhuVucKhoDTO;
 
 public class KhuVucKhoDAO implements DAOinterface<KhuVucKhoDTO> {
 
-    public static KhuVucKhoDAO getInstance() {
+    public static KhuVucKhoDAO getInstance() {//no recommended
         return new KhuVucKhoDAO();
     }
 

@@ -97,8 +97,8 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
 
     public void init(SanPham jpSP) {
         this.jpSP = jpSP;
-        masp = jpSP.spBUS.spDAO.getAutoIncrement();
-        mach = PhienBanSanPhamDAO.getInstance().getAutoIncrement();
+        masp = jpSP.spBUS.spDAO.getAutoIncrement()+1;
+        mach = PhienBanSanPhamDAO.getInstance().getAutoIncrement()+1;
         arrkhuvuc = kvkhoBus.getArrTenKhuVuc();
         arrthuonghieu = thuonghieuBus.getArrTenThuongHieu();
         arrhHDH = heDieuHanhBUS.getArrTenHeDieuHanh();

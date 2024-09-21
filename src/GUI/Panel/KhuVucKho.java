@@ -187,7 +187,7 @@ public class KhuVucKho extends JPanel implements ActionListener, ItemListener {
                 XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    int id = KhuVucKhoDAO.getInstance().getAutoIncrement();
+                    int id = KhuVucKhoDAO.getInstance().getAutoIncrement()+1;
                     String tenkvk = excelRow.getCell(0).getStringCellValue();
                     String ghichu = excelRow.getCell(1).getStringCellValue();
                     kvkBUS.add(new KhuVucKhoDTO(id, tenkvk, ghichu));

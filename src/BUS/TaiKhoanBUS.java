@@ -29,7 +29,7 @@ public class TaiKhoanBUS {
         return listTaiKhoan.get(index);
     }
     public int getTaiKhoanByMaNV(int manv){
-         int i = 0;
+        int i = 0;
         int vitri = -1;
         while (i < this.listTaiKhoan.size() && vitri == -1) {
             if (listTaiKhoan.get(i).getManv()== manv) {
@@ -56,6 +56,7 @@ public class TaiKhoanBUS {
     public void deleteAcc(int manv){
         
     }
+
     public ArrayList<TaiKhoanDTO> search(String txt, String type) {
         ArrayList<TaiKhoanDTO> result = new ArrayList<>();
         txt = txt.toLowerCase();

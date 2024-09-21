@@ -83,7 +83,7 @@ public class DungLuongRamBUS {
     public boolean checkDup(int dl) {
         boolean check = true;
         int i = 0;
-        while(i <= this.listDLRam.size() && check == true) {
+        while(i < this.listDLRam.size() && check == true) {
             if(this.listDLRam.get(i).getDungluongram()==dl) {
                 check = false;
             } else i++;

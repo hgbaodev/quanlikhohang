@@ -186,7 +186,7 @@ public final class NhaCungCap extends JPanel implements ActionListener, ItemList
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     int check = 1;
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    int id = NhaCungCapDAO.getInstance().getAutoIncrement();
+                    int id = NhaCungCapDAO.getInstance().getAutoIncrement()+1;
                     String tenNCC = excelRow.getCell(0).getStringCellValue();
                     String diachi = excelRow.getCell(1).getStringCellValue();
                     String email = excelRow.getCell(2).getStringCellValue();

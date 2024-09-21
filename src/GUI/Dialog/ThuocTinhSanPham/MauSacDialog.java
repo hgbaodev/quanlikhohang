@@ -136,7 +136,7 @@ public class MauSacDialog extends JDialog implements MouseListener {
             } else {
                 String tenmau = ms.getText();
                 if (msBUS.checkDup(tenmau)) {
-                    int id = MauSacDAO.getInstance().getAutoIncrement();
+                    int id = MauSacDAO.getInstance().getAutoIncrement()+1;
                     msBUS.add(new MauSacDTO(id, tenmau));
                     loadDataTable(list);
                     ms.setText("");

@@ -17,8 +17,10 @@ import DTO.KhachHangDTO;
 
 public class KhachHangDAO implements DAOinterface<KhachHangDTO> {
 
+    private static KhachHangDAO instance;
     public static KhachHangDAO getInstance() {
-        return new KhachHangDAO();
+        if(instance==null) instance = new KhachHangDAO();
+        return instance;
     }
 
     @Override
