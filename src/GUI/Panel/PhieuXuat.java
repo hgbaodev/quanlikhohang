@@ -214,7 +214,9 @@ public final class PhieuXuat extends JPanel implements ActionListener, KeyListen
             if (getRow() < 0) {
                 JOptionPane.showMessageDialog(null, "Vui lòng chọn phiếu cần xem!");
             } else {
-                ChiTietPhieuDialog ctp = new ChiTietPhieuDialog(m, "Thông tin phiếu xuất", true, pxBUS.getSelect(getRow()));
+                int row = tablePhieuXuat.getSelectedRow();
+                int maphieuxuat = Integer.parseInt(tablePhieuXuat.getValueAt(row, 1).toString());
+                ChiTietPhieuDialog ctp = new ChiTietPhieuDialog(m, "Thông tin phiếu xuất", true, getPhieuXuat(maphieuxuat));
             }
         } else if (source == mainFunction.btn.get("cancel")) {
             if (tablePhieuXuat.getSelectedRow() < 0) {
@@ -257,6 +259,15 @@ public final class PhieuXuat extends JPanel implements ActionListener, KeyListen
 
     public int getRow() {
         return tablePhieuXuat.getSelectedRow();
+    }
+
+    public PhieuXuatDTO getPhieuXuat(int maphieuxuat) {
+        for (PhieuXuatDTO px : listPhieuXuat) {
+            if (px.getMaphieu() == maphieuxuat) {
+                return px;
+            }
+        }
+        return null;
     }
 
     public void Fillter() throws ParseException {
