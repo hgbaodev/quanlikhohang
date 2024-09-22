@@ -25,10 +25,10 @@ public class MauSacDAO implements DAOinterface<MauSacDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `mausac`(`mamau`, `tenmau`,`trangthai`) VALUES (?,?,1)";
+            String sql = "INSERT INTO `mausac`(`tenmau`,`trangthai`) VALUES (?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMamau());
-            pst.setString(2, t.getTenmau());
+            // pst.setInt(1, t.getMamau());
+            pst.setString(1, t.getTenmau());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

@@ -139,31 +139,39 @@ public final class SanPham extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == mainFunction.btn.get("create")) {
             SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Thêm sản phẩm mới", true, "create");
+            loadDataTalbe(listSP);
         } else if (e.getSource() == mainFunction.btn.get("update")) {
             int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
-                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Chỉnh sửa sản phẩm", true, "update", listSP.get(index));
+                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Chỉnh sửa sản phẩm", true, "update",
+                        findSanPham(maSanPham));
+                loadDataTalbe(listSP);
             }
         } else if (e.getSource() == mainFunction.btn.get("delete")) {
             int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa Sản phẩm :)!", "Xóa sản phẩm", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
-                    spBUS.delete(listSP.get(index));
+                    spBUS.delete(findSanPham(maSanPham));
                     loadDataTalbe(listSP);
                 }
             }
         } else if (e.getSource() == mainFunction.btn.get("detail")) {
             int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
-                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Xem chi tiết sản phẩm", true, "view", listSP.get(index));
+                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Xem chi tiết sản phẩm", true, "view", findSanPham(maSanPham));;
             }
         } else if (e.getSource() == mainFunction.btn.get("phone")) {
             int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
-                ChiTietSanPhamDialog ct = new ChiTietSanPhamDialog(owner, "Tất cả sản phẩm", true, listSP.get(index));
+                ChiTietSanPhamDialog ct = new ChiTietSanPhamDialog(owner, "Tất cả sản phẩm", true, findSanPham(maSanPham));
             }
         } else if (e.getSource() == mainFunction.btn.get("export")) {
             try {
@@ -204,6 +212,15 @@ public final class SanPham extends JPanel implements ActionListener {
         pnlBorder4.setPreferredSize(new Dimension(10, 0));
         pnlBorder4.setBackground(BackgroundColor);
         this.add(pnlBorder4, BorderLayout.WEST);
+    }
+
+    public DTO.SanPhamDTO findSanPham(int masp) {
+        for (DTO.SanPhamDTO sp : listSP) {
+            if (sp.getMasp() == masp) {
+                return sp;
+            }
+        }
+        return null;
     }
 
 }

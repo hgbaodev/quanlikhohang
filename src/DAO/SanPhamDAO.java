@@ -21,22 +21,37 @@ public class SanPhamDAO implements DAOinterface<SanPhamDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `sanpham`(`masp`, `tensp`, `hinhanh`, `xuatxu`, `chipxuly`, `dungluongpin`, `kichthuocman`, `hedieuhanh`, `phienbanhdh`, `camerasau`, `cameratruoc`, `thoigianbaohanh`, `thuonghieu`, `khuvuckho`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `sanpham`(`tensp`, `hinhanh`, `xuatxu`, `chipxuly`, `dungluongpin`, `kichthuocman`, `hedieuhanh`, `phienbanhdh`, `camerasau`, `cameratruoc`, `thoigianbaohanh`, `thuonghieu`, `khuvuckho`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMasp());
-            pst.setString(2, t.getTensp());
-            pst.setString(3, t.getHinhanh());
-            pst.setInt(4, t.getXuatxu());
-            pst.setString(5, t.getChipxuly());
-            pst.setInt(6, t.getDungluongpin());
-            pst.setDouble(7, t.getKichthuocman());
-            pst.setInt(8, t.getHedieuhanh());
-            pst.setInt(9, t.getPhienbanhdh());
-            pst.setString(10, t.getCamerasau());
-            pst.setString(11, t.getCameratruoc());
-            pst.setInt(12, t.getThoigianbaohanh());
-            pst.setInt(13, t.getThuonghieu());
-            pst.setInt(14, t.getKhuvuckho());
+            // pst.setInt(1, t.getMasp());
+            // pst.setString(2, t.getTensp());
+            // pst.setString(3, t.getHinhanh());
+            // pst.setInt(4, t.getXuatxu());
+            // pst.setString(5, t.getChipxuly());
+            // pst.setInt(6, t.getDungluongpin());
+            // pst.setDouble(7, t.getKichthuocman());
+            // pst.setInt(8, t.getHedieuhanh());
+            // pst.setInt(9, t.getPhienbanhdh());
+            // pst.setString(10, t.getCamerasau());
+            // pst.setString(11, t.getCameratruoc());
+            // pst.setInt(12, t.getThoigianbaohanh());
+            // pst.setInt(13, t.getThuonghieu());
+            // pst.setInt(14, t.getKhuvuckho());
+            //****Sua */
+            pst.setString(1, t.getTensp());
+            pst.setString(2, t.getHinhanh());
+            pst.setInt(3, t.getXuatxu());
+            pst.setString(4, t.getChipxuly());
+            pst.setInt(5, t.getDungluongpin());
+            pst.setDouble(6, t.getKichthuocman());
+            pst.setInt(7, t.getHedieuhanh());
+            pst.setInt(8, t.getPhienbanhdh());
+            pst.setString(9, t.getCamerasau());
+            pst.setString(10, t.getCameratruoc());
+            pst.setInt(11, t.getThoigianbaohanh());
+            pst.setInt(12, t.getThuonghieu());
+            pst.setInt(13, t.getKhuvuckho());
+            //****Sua */
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

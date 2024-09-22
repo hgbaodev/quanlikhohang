@@ -27,7 +27,7 @@ public class SanPhamBUS {
     public SanPhamDTO getByMaSP(int masp) {
         int vitri = -1;
         int i = 0;
-        while (i <= this.listSP.size() && vitri == -1) {
+        while (i < this.listSP.size() && vitri == -1) {
             if (this.listSP.get(i).getMasp() == masp) {
                 vitri = i;
             } else {

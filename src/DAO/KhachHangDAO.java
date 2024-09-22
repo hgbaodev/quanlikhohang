@@ -17,8 +17,10 @@ import DTO.KhachHangDTO;
 
 public class KhachHangDAO implements DAOinterface<KhachHangDTO> {
 
+    private static KhachHangDAO instance;
     public static KhachHangDAO getInstance() {
-        return new KhachHangDAO();
+        if(instance==null) instance = new KhachHangDAO();
+        return instance;
     }
 
     @Override
@@ -26,12 +28,15 @@ public class KhachHangDAO implements DAOinterface<KhachHangDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `khachhang`(`makh`, `tenkhachhang`, `diachi`,`sdt`, `trangthai`) VALUES (?,?,?,?,1)";
+            String sql = "INSERT INTO `khachhang`(`tenkhachhang`, `diachi`,`sdt`, `trangthai`) VALUES (?,?,?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMaKH());
-            pst.setString(2, t.getHoten());
-            pst.setString(3, t.getDiachi());
-            pst.setString(4, t.getSdt());
+            // pst.setInt(1, t.getMaKH());
+            // pst.setString(2, t.getHoten());
+            // pst.setString(3, t.getDiachi());
+            // pst.setString(4, t.getSdt());
+            pst.setString(1, t.getHoten());
+            pst.setString(2, t.getDiachi());
+            pst.setString(3, t.getSdt());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

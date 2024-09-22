@@ -282,15 +282,18 @@ public final class PhieuNhap extends JPanel implements ActionListener, KeyListen
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        
         if (source == mainFunction.btn.get("create")) {
             nhapKho = new TaoPhieuNhap(nv, "create", m);
             m.setPanel(nhapKho);
+            loadDataTalbe(listPhieu);
         } else if (source == mainFunction.btn.get("detail")) {
             int index = getRowSelected();
+            int maPhieuNhap = (int) tablePhieuNhap.getValueAt(index, 1);
             if (index != -1) {
 //                nhapKho = new TaoPhieuNhap(nv, "view", listPhieu.get(index), m);
 //                m.setPanel(nhapKho);
-                ChiTietPhieuDialog ctsp = new ChiTietPhieuDialog(m, "Thông tin phiếu nhập", true, listPhieu.get(index));
+                ChiTietPhieuDialog ctsp = new ChiTietPhieuDialog(m, "Thông tin phiếu nhập", true, findPhieuNhap(maPhieuNhap));//get index khi chua sort?????
             }
         } else if (source == mainFunction.btn.get("cancel")) {
             int index = getRowSelected();
@@ -358,5 +361,14 @@ public final class PhieuNhap extends JPanel implements ActionListener, KeyListen
         } catch (ParseException ex) {
             Logger.getLogger(PhieuNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public PhieuNhapDTO findPhieuNhap(int maPhieuNhap) {
+        for (PhieuNhapDTO pn : listPhieu) {
+            if (pn.getMaphieu() == maPhieuNhap) {
+                return pn;
+            }
+        }
+        return null;
     }
 }

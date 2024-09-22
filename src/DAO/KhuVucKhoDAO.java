@@ -12,11 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.sql.Statement;
+
 import DTO.KhuVucKhoDTO;
 
 public class KhuVucKhoDAO implements DAOinterface<KhuVucKhoDTO> {
 
-    public static KhuVucKhoDAO getInstance() {
+    public static KhuVucKhoDAO getInstance() {//no recommended
         return new KhuVucKhoDAO();
     }
 
@@ -25,11 +28,15 @@ public class KhuVucKhoDAO implements DAOinterface<KhuVucKhoDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `khuvuckho`(`makhuvuc`, `tenkhuvuc`,`ghichu`,`trangthai`) VALUES (?,?,?,1)";
+            String sql = "INSERT INTO `khuvuckho`(`tenkhuvuc`,`ghichu`,`trangthai`) VALUES (?,?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMakhuvuc());
-            pst.setString(2, t.getTenkhuvuc());
-            pst.setString(3, t.getGhichu());
+            // pst.setInt(1, t.getMakhuvuc());
+            // pst.setString(2, t.getTenkhuvuc());
+            // pst.setString(3, t.getGhichu());
+
+            pst.setString(1, t.getTenkhuvuc());
+            pst.setString(2, t.getGhichu());
+            
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

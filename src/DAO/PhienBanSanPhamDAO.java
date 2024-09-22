@@ -27,16 +27,23 @@ public class PhienBanSanPhamDAO implements ChiTietInterface<PhienBanSanPhamDTO> 
         for (int i = 0; i < t.size(); i++) {
             try {
                 Connection con = (Connection) JDBCUtil.getConnection();
-                String sql = "INSERT INTO `phienbansanpham`(`maphienbansp`, `masp`, `rom`, `ram`, `mausac`, `gianhap`, `giaxuat`,`soluongton`) VALUES (?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO `phienbansanpham`(`masp`, `rom`, `ram`, `mausac`, `gianhap`, `giaxuat`,`soluongton`) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-                pst.setInt(1, t.get(i).getMaphienbansp());
-                pst.setInt(2, t.get(i).getMasp());
-                pst.setInt(3, t.get(i).getRom());
-                pst.setInt(4, t.get(i).getRam());
-                pst.setInt(5, t.get(i).getMausac());
-                pst.setInt(6, t.get(i).getGianhap());
-                pst.setInt(7, t.get(i).getGiaxuat());
-                pst.setInt(8, t.get(i).getSoluongton());
+//                pst.setInt(1, t.get(i).getMaphienbansp());
+//                pst.setInt(2, t.get(i).getMasp());
+//                pst.setInt(3, t.get(i).getRom());
+//                pst.setInt(4, t.get(i).getRam());
+//                pst.setInt(5, t.get(i).getMausac());
+//                pst.setInt(6, t.get(i).getGianhap());
+//                pst.setInt(7, t.get(i).getGiaxuat());
+//                pst.setInt(8, t.get(i).getSoluongton());
+                pst.setInt(1, t.get(i).getMasp());
+                pst.setInt(2, t.get(i).getRom());
+                pst.setInt(3, t.get(i).getRam());
+                pst.setInt(4, t.get(i).getMausac());
+                pst.setInt(5, t.get(i).getGianhap());
+                pst.setInt(6, t.get(i).getGiaxuat());
+                pst.setInt(7, t.get(i).getSoluongton());
                 result = pst.executeUpdate();
                 JDBCUtil.closeConnection(con);
             } catch (SQLException ex) {

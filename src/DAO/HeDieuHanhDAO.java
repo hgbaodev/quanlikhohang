@@ -28,10 +28,9 @@ public class HeDieuHanhDAO implements DAOinterface<HeDieuHanhDTO>{
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `hedieuhanh`(`mahedieuhanh`, `tenhedieuhanh`,`trangthai`) VALUES (?,?,1)";
+            String sql = "INSERT INTO `hedieuhanh`(`tenhedieuhanh`,`trangthai`) VALUES (?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMahdh());
-            pst.setString(2, t.getTenhdh());
+            pst.setString(1, t.getTenhdh());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

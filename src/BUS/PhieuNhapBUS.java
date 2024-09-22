@@ -6,6 +6,7 @@ import DAO.PhieuNhapDAO;
 import DTO.ChiTietPhieuDTO;
 import DTO.ChiTietPhieuNhapDTO;
 import DTO.ChiTietSanPhamDTO;
+import DTO.PhienBanSanPhamDTO;
 import DTO.PhieuNhapDTO;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -66,6 +67,14 @@ public class PhieuNhapBUS {
         if (check) {
             check = ctPhieuNhapDAO.insert(ctPhieu) != 0;
             check = chitietsanphamDAO.insert_mutiple(convertHashMapToArray(chitietsanpham)) != 0;
+            //cap nhat gia nhap moi vao phienbansanpham
+            PhienBanSanPhamBUS phienbanBUS = new PhienBanSanPhamBUS();
+            for (ChiTietPhieuNhapDTO ctpn: ctPhieu) {
+                PhienBanSanPhamDTO phienban = phienbanBUS.getByMaPhienBan(ctpn.getMaphienbansp());
+                phienban.setGianhap(ctpn.getDongia());
+                phienban.setGiaxuat((int) Math.round(ctpn.getDongia() * 1.2)); //!!!!
+                phienbanBUS.update(phienban);
+            }
         }
         return check;
     }

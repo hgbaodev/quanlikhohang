@@ -94,7 +94,7 @@ public class ThuongHieuBUS {
     public boolean checkDup(String name) {
         boolean check = true;
         int i = 0;
-        while (i <= this.listLH.size() && check == true) {
+        while (i < this.listLH.size() && check == true) {
             if (this.listLH.get(i).getTenthuonghieu().toLowerCase().contains(name.toLowerCase())) {
                 check = false;
             } else {

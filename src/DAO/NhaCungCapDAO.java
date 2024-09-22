@@ -24,13 +24,17 @@ public class NhaCungCapDAO implements DAOinterface<NhaCungCapDTO>{
         int result = 0 ;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `nhacungcap`(`manhacungcap`, `tennhacungcap`, `diachi`, `email`, `sdt`, `trangthai`) VALUES (?,?,?,?,?,1)";
+            String sql = "INSERT INTO `nhacungcap`(`tennhacungcap`, `diachi`, `email`, `sdt`, `trangthai`) VALUES (?,?,?,?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMancc());
-            pst.setString(2, t.getTenncc());
-            pst.setString(3, t.getDiachi());
-            pst.setString(4, t.getEmail());
-            pst.setString(5, t.getSdt());
+            // pst.setInt(1, t.getMancc());
+            // pst.setString(2, t.getTenncc());
+            // pst.setString(3, t.getDiachi());
+            // pst.setString(4, t.getEmail());
+            // pst.setString(5, t.getSdt());
+            pst.setString(1, t.getTenncc());
+            pst.setString(2, t.getDiachi());
+            pst.setString(3, t.getEmail());
+            pst.setString(4, t.getSdt());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

@@ -27,10 +27,10 @@ public class XuatXuDAO implements DAOinterface<XuatXuDTO>{
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `xuatxu`(`maxuatxu`, `tenxuatxu`,`trangthai`) VALUES (?,?,1)";
+            String sql = "INSERT INTO `xuatxu`(`tenxuatxu`,`trangthai`) VALUES (?,?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMaxuatxu());
-            pst.setString(2, t.getTenxuatxu());
+            // pst.setInt(1, t.getMaxuatxu());
+            pst.setString(1, t.getTenxuatxu());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

@@ -83,7 +83,7 @@ public class ThongKeDAO {
                            LEFT JOIN xuat_dau ON phienbansanpham.maphienbansp = xuat_dau.maphienbansp
                          ),
                          temp_table AS (
-                         SELECT sanpham.masp, phienbansanpham.maphienbansp, sanpham.tensp, dau_ky.soluongdauky, COALESCE(nhap.sl_nhap, 0) AS soluongnhap, COALESCE(xuat.sl_xuat, 0)  AS soluongxuat, (dau_ky.soluongdauky + COALESCE(nhap.sl_nhap, 0) - COALESCE(xuat.sl_xuat, 0)) AS soluongcuoiky, kichthuocram, kichthuocrom, tenmau
+                         SELECT sanpham.masp, phienbansanpham.maphienbansp, sanpham.tensp, dau_ky.  , COALESCE(nhap.sl_nhap, 0) AS soluongnhap, COALESCE(xuat.sl_xuat, 0)  AS soluongxuat, (dau_ky.soluongdauky + COALESCE(nhap.sl_nhap, 0) - COALESCE(xuat.sl_xuat, 0)) AS soluongcuoiky, kichthuocram, kichthuocrom, tenmau
                          FROM dau_ky
                          LEFT JOIN nhap ON dau_ky.maphienbansp = nhap.maphienbansp
                          LEFT JOIN xuat ON dau_ky.maphienbansp = xuat.maphienbansp

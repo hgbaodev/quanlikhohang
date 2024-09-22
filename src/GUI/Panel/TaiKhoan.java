@@ -47,7 +47,7 @@ public class TaiKhoan extends JPanel implements ActionListener, ItemListener {
     PanelBorderRadius main, functionBar;
     JPanel pnlBorder1, pnlBorder2, pnlBorder3, pnlBorder4, contentCenter;
     JTable tableTaiKhoan;
-    JScrollPane scrollTableSanPham;
+    JScrollPane scrollTableTaiKhoan;
     MainFunction mainFunction;
     IntegratedSearch search;
     public JFrame owner = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -67,13 +67,13 @@ public class TaiKhoan extends JPanel implements ActionListener, ItemListener {
     private void initComponent() {
         tableTaiKhoan = new JTable();
         tableTaiKhoan.setDefaultEditor(Object.class, null);
-        scrollTableSanPham = new JScrollPane();
+        scrollTableTaiKhoan = new JScrollPane();
         tblModel = new DefaultTableModel();
         String[] header = new String[]{"MaNV", "Tên đăng nhập", "Nhóm quyền", "Trạng thái"};
         tblModel.setColumnIdentifiers(header);
         tableTaiKhoan.setModel(tblModel);
         tableTaiKhoan.setFocusable(false);
-        scrollTableSanPham.setViewportView(tableTaiKhoan);
+        scrollTableTaiKhoan.setViewportView(tableTaiKhoan);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         tableTaiKhoan.setDefaultRenderer(Object.class, centerRenderer);
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -145,7 +145,7 @@ public class TaiKhoan extends JPanel implements ActionListener, ItemListener {
 //        main.setBorder(new EmptyBorder(20, 20, 20, 20));
         contentCenter.add(main, BorderLayout.CENTER);
 
-        main.add(scrollTableSanPham);
+        main.add(scrollTableTaiKhoan);
     }
 
     public void loadTable(ArrayList<TaiKhoanDTO> list) {

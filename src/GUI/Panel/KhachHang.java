@@ -238,30 +238,34 @@ public class KhachHang extends JPanel implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == mainFunction.btn.get("create")) {
             System.out.println("ok");
 
             KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Thêm khách hàng", true, "create");
         } else if (e.getSource() == mainFunction.btn.get("update")) {
             int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
-                KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Chỉnh sửa khách hàng", true, "update", listkh.get(index));
+                KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Chỉnh sửa khách hàng", true, "update", findKhachHang(maKhachHang));
             }
         } else if (e.getSource() == mainFunction.btn.get("delete")) {
             int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null,
                         "Bạn có chắc chắn muốn xóa khách hàng ?", "Xóa khách hàng",
                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
-                    khachhangBUS.delete(listkh.get(index));
+                    khachhangBUS.delete(findKhachHang(maKhachHang));
                     loadDataTable(listkh);
                 }
             }
         } else if (e.getSource() == mainFunction.btn.get("detail")) {
             int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
-                KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Xem khách hàng", true, "view", listkh.get(index));
+                KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Xem khách hàng", true, "view", findKhachHang(maKhachHang));
             }
         } else if (e.getSource() == mainFunction.btn.get("import")) {
             importExcel();
@@ -280,5 +284,14 @@ public class KhachHang extends JPanel implements ActionListener, ItemListener {
         String txt = search.txtSearchForm.getText();
         listkh = khachhangBUS.search(txt, type);
         loadDataTable(listkh);
+    }
+
+    public KhachHangDTO findKhachHang(int maKhachHang) {
+        for (KhachHangDTO khachHang : listkh) {
+            if (khachHang.getMaKH() == maKhachHang) {
+                return khachHang;
+            }
+        }
+        return null;
     }
 }
