@@ -149,7 +149,7 @@ public class XuatXuDialog extends JDialog implements MouseListener {
             } else {
                 String tenmau = ms.getText();
                 if (msBUS.checkDup(tenmau)) {
-                    int id = XuatXuDAO.getInstance().getAutoIncrement()+1;
+                    int id = XuatXuDAO.getInstance().getAutoIncrement();
                     msBUS.add(new XuatXuDTO(id, tenmau));
                     loadDataTable(list);
                     ms.setText("");

@@ -193,7 +193,7 @@ public class KhachHang extends JPanel implements ActionListener, ItemListener {
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     int check = 1;
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    int id = KhachHangDAO.getInstance().getAutoIncrement()+1;
+                    int id = KhachHangDAO.getInstance().getAutoIncrement();
                     String tenkh = excelRow.getCell(0).getStringCellValue();
                     String sdt = excelRow.getCell(1).getStringCellValue();
                     String diachi = excelRow.getCell(2).getStringCellValue();
@@ -238,18 +238,20 @@ public class KhachHang extends JPanel implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int index = getRowSelected();
-        int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
         
         if (e.getSource() == mainFunction.btn.get("create")) {
             System.out.println("ok");
 
             KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Thêm khách hàng", true, "create");
         } else if (e.getSource() == mainFunction.btn.get("update")) {
+            int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
                 KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Chỉnh sửa khách hàng", true, "update", findKhachHang(maKhachHang));
             }
         } else if (e.getSource() == mainFunction.btn.get("delete")) {
+            int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null,
                         "Bạn có chắc chắn muốn xóa khách hàng ?", "Xóa khách hàng",
@@ -260,6 +262,8 @@ public class KhachHang extends JPanel implements ActionListener, ItemListener {
                 }
             }
         } else if (e.getSource() == mainFunction.btn.get("detail")) {
+            int index = getRowSelected();
+            int maKhachHang = (int) tableKhachHang.getValueAt(index, 0);
             if (index != -1) {
                 KhachHangDialog khDialog = new KhachHangDialog(this, owner, "Xem khách hàng", true, "view", findKhachHang(maKhachHang));
             }

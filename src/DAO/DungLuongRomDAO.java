@@ -30,10 +30,9 @@ public class DungLuongRomDAO implements DAOinterface<DungLuongRomDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `dungluongrom`(`madlrom`, `kichthuocrom`,`trangthai`) VALUES (?,?,1)";
+            String sql = "INSERT INTO `dungluongrom`(`kichthuocrom`,`trangthai`) VALUES (?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMadungluongrom());
-            pst.setInt(2, t.getDungluongrom());
+            pst.setInt(1, t.getDungluongrom());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

@@ -350,7 +350,7 @@ public class NhanVienBUS implements ActionListener, DocumentListener {
                     int check = 1;
                     int gt;
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    int id = NhanVienDAO.getInstance().getAutoIncrement()+1;
+                    int id = NhanVienDAO.getInstance().getAutoIncrement();
                     String tennv = excelRow.getCell(0).getStringCellValue();
                     String gioitinh = excelRow.getCell(1).getStringCellValue();
                     if (gioitinh.equals("Nam") || gioitinh.equals("nam")) {

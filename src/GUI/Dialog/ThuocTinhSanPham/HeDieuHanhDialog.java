@@ -146,7 +146,7 @@ public class HeDieuHanhDialog extends JDialog implements MouseListener {
             } else {
                 String tenmau = ms.getText();
                 if (msBUS.checkDup(tenmau)) {
-                    int id = HeDieuHanhDAO.getInstance().getAutoIncrement()+1;
+                    int id = HeDieuHanhDAO.getInstance().getAutoIncrement();
                     msBUS.add(new HeDieuHanhDTO(id, tenmau));
                     loadDataTable(list);
                     ms.setText("");

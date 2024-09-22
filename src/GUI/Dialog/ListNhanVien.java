@@ -43,12 +43,14 @@ public class ListNhanVien extends JDialog implements MouseListener {
     private JTable tableNhanVien;
     private JScrollPane scrollTableSanPham;
     private DefaultTableModel tblModel;
-    private ArrayList<NhanVienDTO> listnv = NhanVienDAO.getInstance().selectAllNV();
-    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+    private ArrayList<NhanVienDTO> listnv ;
+    DefaultTableCellRenderer centerRenderer;
     
     public ListNhanVien(TaiKhoan taiKhoan, JFrame owner, String title, boolean modal){
         super(owner, title, modal);
-        this.guiTaiKhoan=taiKhoan;
+        this.listnv = NhanVienDAO.getInstance().selectAllNV();
+        this.guiTaiKhoan = taiKhoan;
+        this.centerRenderer = new DefaultTableCellRenderer();
         init();
     }
 
@@ -120,9 +122,9 @@ public class ListNhanVien extends JDialog implements MouseListener {
         return tableNhanVien.getSelectedRow();
     }
     
-    public void loadDataTalbe(ArrayList<DTO.NhanVienDTO> list) {
-        listnv = list;
+    public void loadDataTalbe(ArrayList<DTO.NhanVienDTO> listnv) {
         tblModel.setRowCount(0);
+        System.out.println("size: "+listnv.size());
         for (DTO.NhanVienDTO nhanVien : listnv) {
             tblModel.addRow(new Object[]{
                 nhanVien.getManv(),nhanVien.getHoten(),nhanVien.getGioitinh()==1?"Nam":"Nữ",nhanVien.getNgaysinh(),nhanVien.getSdt(),nhanVien.getEmail()

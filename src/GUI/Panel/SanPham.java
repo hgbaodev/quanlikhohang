@@ -139,16 +139,21 @@ public final class SanPham extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int index = getRowSelected();
-        int maSanPham = (int) tableSanPham.getValueAt(index, 0);
 
         if (e.getSource() == mainFunction.btn.get("create")) {
             SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Thêm sản phẩm mới", true, "create");
+            loadDataTalbe(listSP);
         } else if (e.getSource() == mainFunction.btn.get("update")) {
+            int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
-                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Chỉnh sửa sản phẩm", true, "update", findSanPham(maSanPham));
+                SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Chỉnh sửa sản phẩm", true, "update",
+                        findSanPham(maSanPham));
+                loadDataTalbe(listSP);
             }
         } else if (e.getSource() == mainFunction.btn.get("delete")) {
+            int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
                 int input = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa Sản phẩm :)!", "Xóa sản phẩm", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (input == 0) {
@@ -157,10 +162,14 @@ public final class SanPham extends JPanel implements ActionListener {
                 }
             }
         } else if (e.getSource() == mainFunction.btn.get("detail")) {
+            int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
                 SanPhamDialog spDialog = new SanPhamDialog(this, owner, "Xem chi tiết sản phẩm", true, "view", findSanPham(maSanPham));;
             }
         } else if (e.getSource() == mainFunction.btn.get("phone")) {
+            int index = getRowSelected();
+            int maSanPham = (int) tableSanPham.getValueAt(index, 0);
             if (index != -1) {
                 ChiTietSanPhamDialog ct = new ChiTietSanPhamDialog(owner, "Tất cả sản phẩm", true, findSanPham(maSanPham));
             }

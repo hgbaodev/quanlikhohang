@@ -30,13 +30,18 @@ public class PhieuNhapDAO implements DAOinterface<PhieuNhapDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `phieunhap`(`maphieunhap`, `thoigian`, `manhacungcap`, `nguoitao`, `tongtien`) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO `phieunhap`(`thoigian`, `manhacungcap`, `nguoitao`, `tongtien`) VALUES (?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, t.getMaphieu());
-            pst.setTimestamp(2, t.getThoigiantao());
-            pst.setInt(3, t.getManhacungcap());
-            pst.setInt(4, t.getManguoitao());
-            pst.setDouble(5, t.getTongTien());
+            // pst.setInt(1, t.getMaphieu());
+            // pst.setTimestamp(2, t.getThoigiantao());
+            // pst.setInt(3, t.getManhacungcap());
+            // pst.setInt(4, t.getManguoitao());
+            // pst.setDouble(5, t.getTongTien());
+
+            pst.setTimestamp(1, t.getThoigiantao());
+            pst.setInt(2, t.getManhacungcap());
+            pst.setInt(3, t.getManguoitao());
+            pst.setLong(4, t.getTongTien());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

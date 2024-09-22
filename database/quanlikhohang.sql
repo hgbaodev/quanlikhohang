@@ -7,10 +7,6 @@
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
-CREATE DATABASE quanlikhohang
-USE quanlikhohang
-
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -892,12 +888,11 @@ INSERT INTO `phienbansanpham` (`maphienbansp`, `masp`, `rom`, `ram`, `mausac`, `
 --
 
 CREATE TABLE `phieubaohanh` (
-  `maphieubaohanh` int(11) NOT NULL AUTO_INCREMENT,
+  `maphieubaohanh` int(11) NOT NULL,
   `maimei` varchar(255) NOT NULL,
   `lydo` varchar(50) NOT NULL,
-  `thoigian` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `thoigiantra` datetime DEFAULT NULL,
-  PRIMARY KEY (`maphieubaohanh`)
+  `thoigian` datetime NOT NULL DEFAULT curdate(),
+  `thoigiantra` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

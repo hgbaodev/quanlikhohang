@@ -27,10 +27,10 @@ public class PhieuKiemKeDAO implements DAOinterface<PhieuKiemKeDTO>{
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `phieukiemke`(`maphieu`,`nguoitaophieukiemke`) VALUES (?,?)";
+            String sql = "INSERT INTO `phieukiemke`(`nguoitaophieukiemke`) VALUES (?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, t.getMaphieukiemke());
-            pst.setInt(2, t.getNguoitao());
+            // pst.setInt(1, t.getMaphieukiemke());
+            pst.setInt(1, t.getNguoitao());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

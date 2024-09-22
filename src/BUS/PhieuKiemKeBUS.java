@@ -44,7 +44,7 @@ public class PhieuKiemKeBUS {
     
     
     public int getAutoIncrement(){
-        return phieuKiemKeDAO.getAutoIncrement()+1;
+        return phieuKiemKeDAO.getAutoIncrement();
     }
     
     public ArrayList<PhieuKiemKeDTO> selectAll(){

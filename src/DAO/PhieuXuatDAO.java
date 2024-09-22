@@ -28,13 +28,18 @@ public class PhieuXuatDAO implements DAOinterface<PhieuXuatDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `phieuxuat`(`maphieuxuat`, `tongtien`, `nguoitaophieuxuat`, `makh`, `trangthai`) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO `phieuxuat`(`tongtien`, `nguoitaophieuxuat`, `makh`, `trangthai`) VALUES (?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, t.getMaphieu());
-            pst.setInt(2, (int) t.getTongTien());
-            pst.setInt(3, t.getManguoitao());
-            pst.setInt(4, t.getMakh());
-            pst.setInt(5, t.getTrangthai());
+            // pst.setInt(1, t.getMaphieu());
+            // pst.setInt(2, (int) t.getTongTien());
+            // pst.setInt(3, t.getManguoitao());
+            // pst.setInt(4, t.getMakh());
+            // pst.setInt(5, t.getTrangthai());
+            pst.setLong(1, t.getTongTien());
+            pst.setInt(2, t.getManguoitao());
+            pst.setInt(3, t.getMakh());
+            pst.setInt(4, t.getTrangthai());
+
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (SQLException ex) {

@@ -159,7 +159,7 @@ public class NhanVienDialog extends JDialog {
                                 System.out.println("Nữ");
                                 txt_gender = 0;
                             }
-                            int manv = NhanVienDAO.getInstance().getAutoIncrement()+1;
+                            int manv = NhanVienDAO.getInstance().getAutoIncrement();
                             String txtName = name.getText();
                             String txtSdt = sdt.getText();
                             String txtEmail = email.getText();
@@ -195,7 +195,7 @@ public class NhanVienDialog extends JDialog {
                                 System.out.println("Nữ");
                                 txt_gender = 0;
                             }
-                            int manv = NhanVienDAO.getInstance().getAutoIncrement()+1;
+                            int manv = NhanVienDAO.getInstance().getAutoIncrement();
                             String txtName = name.getText();
                             String txtSdt = sdt.getText();
                             String txtEmail = email.getText();

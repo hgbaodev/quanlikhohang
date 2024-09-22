@@ -97,8 +97,8 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
 
     public void init(SanPham jpSP) {
         this.jpSP = jpSP;
-        masp = jpSP.spBUS.spDAO.getAutoIncrement()+1;
-        mach = PhienBanSanPhamDAO.getInstance().getAutoIncrement()+1;
+        masp = jpSP.spBUS.spDAO.getAutoIncrement();
+        mach = PhienBanSanPhamDAO.getInstance().getAutoIncrement();
         arrkhuvuc = kvkhoBus.getArrTenKhuVuc();
         arrthuonghieu = thuonghieuBus.getArrTenThuongHieu();
         arrhHDH = heDieuHanhBUS.getArrTenHeDieuHanh();
@@ -131,23 +131,22 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
         pninfosanphamright.setPreferredSize(new Dimension(300, 600));
         pninfosanphamright.setBorder(new EmptyBorder(0, 10, 0, 10));
         pnCenter.add(pninfosanphamright, BorderLayout.WEST);
-
         tenSP = new InputForm("Tên sản phẩm");
         xuatxu = new SelectForm("Xuất xứ", arrXX);
         chipxuly = new InputForm("Chip xử lý");
         dungluongpin = new InputForm("Dung lượng pin");
-        PlainDocument pin = (PlainDocument)dungluongpin.getTxtForm().getDocument();
+        PlainDocument pin = (PlainDocument) dungluongpin.getTxtForm().getDocument();
         pin.setDocumentFilter((new NumericDocumentFilter()));
         kichthuocman = new InputForm("Kích thước màn");
         phienbanhdh = new InputForm("Phiên bản hđh");
-        PlainDocument pbhdh = (PlainDocument)phienbanhdh.getTxtForm().getDocument();
+        PlainDocument pbhdh = (PlainDocument) phienbanhdh.getTxtForm().getDocument();
         pbhdh.setDocumentFilter((new NumericDocumentFilter()));
         thoigianbaohanh = new InputForm("Thời gian bảo hành");
-        PlainDocument baohanh = (PlainDocument)thoigianbaohanh.getTxtForm().getDocument();
+        PlainDocument baohanh = (PlainDocument) thoigianbaohanh.getTxtForm().getDocument();
         baohanh.setDocumentFilter((new NumericDocumentFilter()));
         camerasau = new InputForm("Camera sau");
         cameratruoc = new InputForm("Camera trước");
-//        String[] arrhdh = arrhHDH;
+        //        String[] arrhdh = arrhHDH;
         hedieuhanh = new SelectForm("Hệ điều hành", arrhHDH);
         thuonghieu = new SelectForm("Thương hiệu", arrthuonghieu);
         khuvuc = new SelectForm("Khu vực kho", arrkhuvuc);
@@ -195,6 +194,34 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
         btnHuyBo.addActionListener(this);
         pnbottom.add(btnHuyBo);
         pnCenter.add(pnbottom, BorderLayout.SOUTH);
+    }
+    
+    public void setEnable(boolean isCreating) {
+        //neu dang o che do tao moi thi cac o input sau se duoc phep nhap nguoc lai thi khong
+        //card 1
+        tenSP.setEditable(isCreating);
+        kichthuocman.setEditable(isCreating);
+        dungluongpin.setEditable(isCreating);
+        chipxuly.setEditable(isCreating);
+        xuatxu.setEnabled(isCreating);
+        hedieuhanh.setEnabled(isCreating);
+        kichthuocman.setEditable(isCreating);
+        phienbanhdh.setEditable(isCreating);
+        camerasau.setEditable(isCreating);
+        cameratruoc.setEditable(isCreating);
+        thuonghieu.setEnabled(isCreating);
+
+        //card 2
+        txtgianhap.setText(0 + "");
+        txtgiaxuat.setText(0 + "");
+        txtgianhap.setEditable(false);
+        txtgiaxuat.setEditable(false);
+        if(btnAddCauHinhEdit != null && btnEditCTCauHinhEdit != null && btnDeleteCauHinhEdit != null && btnResetCauHinhEdit != null){
+            btnAddCauHinhEdit.setEnabled(isCreating);
+            btnEditCTCauHinhEdit.setEnabled(isCreating);
+            btnDeleteCauHinhEdit.setEnabled(isCreating);
+            btnResetCauHinhEdit.setEnabled(isCreating);
+        }
     }
 
     public void initCardTwo(String type) {
@@ -325,6 +352,8 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
         initCardOne(type);
         initCardTwo(type);
 
+        setEnable(type.equals("create"));
+
         pnmain.add(pnCenter);
         pnmain.add(pncard2);
 
@@ -342,7 +371,7 @@ public final class SanPhamDialog extends JDialog implements ActionListener {
         this.setVisible(true);
     }
 
-    public String addImage(String urlImg) {
+    public String addImage(String urlImg) { //save image to folder img_product
         Random randomGenerator = new Random();
         int ram = randomGenerator.nextInt(1000);
         File sourceFile = new File(urlImg);

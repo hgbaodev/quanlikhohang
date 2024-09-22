@@ -25,9 +25,9 @@ public class DungLuongRamDAO implements DAOinterface<DungLuongRamDTO> {
         int result = 0;
         try {
             Connection con = (Connection) JDBCUtil.getConnection();
-            String sql = "INSERT INTO `dungluongram`(`madlram`, `kichthuocram`,`trangthai`) VALUES (?,?,1)";
+            String sql = "INSERT INTO `dungluongram`(`kichthuocram`,`trangthai`) VALUES (?,1)";
             PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
-            pst.setInt(1, t.getMadlram());
+            // pst.setInt(1, t.getMadlram());
             pst.setInt(2, t.getDungluongram());
             result = pst.executeUpdate();
             JDBCUtil.closeConnection(con);

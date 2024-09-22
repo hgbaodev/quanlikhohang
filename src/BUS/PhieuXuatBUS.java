@@ -46,7 +46,14 @@ public class PhieuXuatBUS {
     }
 
     public void insert(PhieuXuatDTO px, ArrayList<ChiTietPhieuDTO> ct) {
+        System.out.println("Bus insert ma phieu xuat: " + px.getMaphieu());
         phieuXuatDAO.insert(px);
+        for (ChiTietPhieuDTO ctp : ct) {
+            System.out.println("Bus insert ma phieu xuat: " + ctp.getMaphieu());
+            System.out.println("Bus insert ma phien ban: " + ctp.getMaphienbansp());
+            System.out.println("Bus insert so luong: " + ctp.getSoluong());
+            System.out.println("Bus insert don gia: " + ctp.getDongia());
+        }
         chiTietPhieuXuatDAO.insert(ct);
     }
 

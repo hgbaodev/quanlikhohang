@@ -55,8 +55,13 @@ public class PhienBanSanPhamBUS {
         return cauhinhDAO.selectById(maphienban).getSoluongton();
     }
     
-    public boolean checkImeiExists(ArrayList<ChiTietSanPhamDTO> arr){
+    public boolean checkImeiExists(ArrayList<ChiTietSanPhamDTO> arr) {
         return cauhinhDAO.checkImeiExists(arr);
+    }
+    
+    public boolean update(PhienBanSanPhamDTO ch) {
+        boolean check = cauhinhDAO.update(ch) != 0;
+        return check;
     }
 }
 

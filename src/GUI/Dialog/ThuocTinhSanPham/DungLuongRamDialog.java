@@ -141,7 +141,7 @@ public final class DungLuongRamDialog extends JDialog implements MouseListener {
             if (Validation.isEmpty(ms.getText())) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập dung lượng Ram mới");
             } else {
-                int id = DungLuongRamDAO.getInstance().getAutoIncrement()+1;
+                int id = DungLuongRamDAO.getInstance().getAutoIncrement();
                 int kichthuoc = Integer.parseInt(ms.getText());
                 if (dlrBUS.checkDup(kichthuoc)) {
                     dlrBUS.add(new DungLuongRamDTO(id, kichthuoc));
